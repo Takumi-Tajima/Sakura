@@ -43,6 +43,7 @@ group :development, :test do
   gem 'bullet'
   gem 'html2haml'
   gem 'factory_bot_rails'
+  gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 end
