@@ -42,6 +42,7 @@ group :development, :test do
   gem "rspec-rails"
   gem 'bullet'
   gem 'html2haml'
+  gem 'factory_bot_rails'
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 end
