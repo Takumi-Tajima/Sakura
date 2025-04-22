@@ -459,7 +459,7 @@ DEPENDENCIES
   jbuilder
   kamal
   propshaft
-  puma (>= 5.0)
+  puma
   rails (~> 8.0.2)
   rspec-rails
   selenium-webdriver
@@ -467,7 +467,7 @@ DEPENDENCIES
   solid_cable
   solid_cache
   solid_queue
-  sqlite3 (>= 2.1)
+  sqlite3
   stimulus-rails
   thruster
   turbo-rails
