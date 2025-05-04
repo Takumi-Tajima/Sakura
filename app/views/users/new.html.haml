@@ -1,0 +1,16 @@
+.container.mt-3
+  %h1.fs-2 ログイン
+  .row
+    .col-md-6.col-md-offset-3.bg
+      = form_with(model: @user) do |f|
+        = render 'layouts/error_messages', model: @user
+        .form-group
+          = f.label :name, class: 'control-label'
+          = f.text_field :name, class: 'form-control', placeholder: 'ユーザー名'
+          = f.label :email, class: 'control-label'
+          = f.email_field :email, class: 'form-control', placeholder: 'メールアドレス'
+          = f.label :password, class: 'control-label'
+          = f.password_field :password, class: 'form-control', placeholder: 'パスワード'
+          = f.label :password_confirmation, class: 'control-label'
+          = f.password_field :password_confirmation, class: 'form-control', placeholder: 'パスワード（確認）'
+          = f.submit "登録", class: "btn btn-primary"
