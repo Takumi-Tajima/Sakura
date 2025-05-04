@@ -1,3 +1,13 @@
 .container
   %h1.fs-4= @user.name
   =link_to 'Test', class: 'btn btn-primary'
+
+%button.btn.btn-secondary.dropdown-toggle{ type: 'button', 'data-bs-toggle': 'dropdown', 'aria-expanded': 'false' }
+  メニュー
+%ul.dropdown-menu
+  %li
+    = button_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
+  %li
+    = link_to 'ログイン', login_path, class: 'dropdown-item'
+  %li
+    = link_to '新規登録', new_user_path, class: 'dropdown-item'

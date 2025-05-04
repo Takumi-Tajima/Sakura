@@ -1,0 +1,12 @@
+.container.mt-3
+  %h1.fs-2 ログイン
+  .row
+    .col-md-6.col-md-offset-3.bg
+      = form_with(url: login_path, scope: :session) do |f|
+        .form-group
+          = f.label :email, class: 'control-label'
+          = f.email_field :email, class: 'form-control', placeholder: 'メールアドレス'
+          = f.label :password, class: 'control-label'
+          = f.password_field :password, class: 'form-control', placeholder: 'パスワード'
+          = f.submit "ログイン", class: "btn btn-primary"
+
