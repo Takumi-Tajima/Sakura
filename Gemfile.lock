@@ -13,6 +13,18 @@ GIT
       rubocop-rspec (~> 3.5.0)
       rubocop-rspec_rails (~> 2.31.0)
 
+GIT
+  remote: https://github.com/heartcombo/devise
+  revision: fec67f98f26fcd9a79072e4581b1bd40d0c7fa1d
+  branch: main
+  specs:
+    devise (5.0.0.beta)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 6.0.0)
+      responders
+      warden (~> 1.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -98,6 +110,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
+    bootstrap (5.3.5)
+      popper_js (>= 2.11.8, < 3)
     brakeman (7.0.2)
       racc
     builder (3.3.0)
@@ -116,16 +130,13 @@ GEM
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
+    dartsass-rails (0.5.1)
+      railties (>= 6.0.0)
+      sass-embedded (~> 1.63)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    devise (4.9.4)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.6.2)
     dotenv (3.1.8)
     drb (2.2.3)
@@ -145,6 +156,12 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.30.2-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.30.2-x86_64-linux)
+      bigdecimal
+      rake (>= 13)
     haml (6.3.0)
       temple (>= 0.8.2)
       thor
@@ -221,19 +238,9 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.4)
-    nokogiri (1.18.8-aarch64-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.18.8-aarch64-linux-musl)
-      racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-musl)
-      racc (~> 1.4)
     nokogiri (1.18.8-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.8-x86_64-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
@@ -241,6 +248,7 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
+    popper_js (2.11.8)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -369,6 +377,10 @@ GEM
       racc (~> 1.5)
       sexp_processor (~> 4.16)
     rubyzip (2.4.1)
+    sass-embedded (1.87.0-arm64-darwin)
+      google-protobuf (~> 4.30)
+    sass-embedded (1.87.0-x86_64-linux-gnu)
+      google-protobuf (~> 4.30)
     securerandom (0.4.1)
     selenium-webdriver (4.33.0)
       base64 (~> 0.2)
@@ -377,6 +389,9 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.17.3)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     solid_cable (3.0.7)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -393,13 +408,8 @@ GEM
       fugit (~> 1.11.0)
       railties (>= 7.1)
       thor (~> 1.3.1)
-    sqlite3 (2.6.0-aarch64-linux-gnu)
-    sqlite3 (2.6.0-aarch64-linux-musl)
-    sqlite3 (2.6.0-arm-linux-gnu)
-    sqlite3 (2.6.0-arm-linux-musl)
     sqlite3 (2.6.0-arm64-darwin)
     sqlite3 (2.6.0-x86_64-linux-gnu)
-    sqlite3 (2.6.0-x86_64-linux-musl)
     sshkit (1.24.0)
       base64
       logger
@@ -413,8 +423,6 @@ GEM
     sysexits (1.2.0)
     temple (0.10.3)
     thor (1.3.2)
-    thruster (0.1.13)
-    thruster (0.1.13-aarch64-linux)
     thruster (0.1.13-arm64-darwin)
     thruster (0.1.13-x86_64-linux)
     tilt (2.6.0)
@@ -447,23 +455,18 @@ GEM
     zeitwerk (2.7.3)
 
 PLATFORMS
-  aarch64-linux
-  aarch64-linux-gnu
-  aarch64-linux-musl
-  arm-linux-gnu
-  arm-linux-musl
   arm64-darwin-24
   x86_64-linux
-  x86_64-linux-gnu
-  x86_64-linux-musl
 
 DEPENDENCIES
   bootsnap
+  bootstrap
   brakeman
   bullet
   capybara
+  dartsass-rails
   debug
-  devise
+  devise!
   factory_bot_rails
   haml-lint
   haml-rails
@@ -476,6 +479,7 @@ DEPENDENCIES
   rspec-rails
   selenium-webdriver
   sgcop!
+  simple_form
   solid_cable
   solid_cache
   solid_queue

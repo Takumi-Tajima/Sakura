@@ -2,11 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
-gem 'devise'
+gem 'bootstrap'
+gem 'dartsass-rails'
+# Rails8にdevise gemのtest_helpersが対応していないためmainブランチを指定
+gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'haml-rails'
 gem 'importmap-rails'
 gem 'propshaft'
 gem 'puma'
+gem 'simple_form'
 gem 'sqlite3'
 gem 'stimulus-rails'
 gem 'turbo-rails'
