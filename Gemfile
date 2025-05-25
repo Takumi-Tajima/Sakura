@@ -27,16 +27,16 @@ gem 'thruster', require: false
 
 group :development, :test do
   gem 'brakeman', require: false
-  gem 'bullet'
-  gem 'debug'
   gem 'factory_bot_rails'
   gem 'haml-lint'
-  gem 'html2haml'
   gem 'rspec-rails'
   gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'
 end
 
 group :development do
+  gem 'bullet'
+  gem 'html2haml'
+  gem 'letter_opener_web'
   gem 'web-console'
 end
 
