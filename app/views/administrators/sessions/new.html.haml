@@ -4,3 +4,5 @@
   = f.input :password
   = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
   = f.button :submit, 'ログイン', class: 'btn btn-primary'
+
+.mt-3= link_to 'パスワードを忘れてしまった場合', new_password_path(resource_name)
