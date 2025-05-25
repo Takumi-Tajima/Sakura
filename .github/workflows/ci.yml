@@ -72,12 +72,6 @@ jobs:
           sudo apt-get -yqq install libgbm1
           sudo apt-get -yqq install libvips
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-      - run: yarn install
-
       - name: Setup database
         run: |
           bundle exec rake db:create
