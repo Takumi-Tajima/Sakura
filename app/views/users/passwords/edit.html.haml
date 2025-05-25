@@ -1,0 +1,8 @@
+%h1.fs-2 パスワード再設定
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = f.error_notification
+  = f.input :reset_password_token, as: :hidden
+  = f.full_error :reset_password_token
+  = f.input :password, autofocus: true, label: '新しいパスワード'
+  = f.input :password_confirmation
+  = f.button :submit, 'パスワードを変更する', class: 'btn btn-primary'
