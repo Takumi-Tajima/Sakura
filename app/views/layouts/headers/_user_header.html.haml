@@ -2,11 +2,11 @@
   .container-fluid
     .d-flex.align-items-center
       .navbar-brand.fs-2= link_to 'Sakura Market', root_path, class: 'text-decoration-none text-body'
-    -# %ul.navbar-nav.ms-auto
-    -#   - if user_signed_in?
-    -#     %li.nav-item.d-flex.align-items-center
-    -#       .me-3= link_to current_user.name, edit_user_registration_path, class: 'text-white fs-5 text-decoration-none'
-    -#       = button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-danger border-white'
-    -#   - else
-    -#     %li.nav-item
-    -#       = link_to 'ログイン', new_user_session_path, class: 'btn btn-primary'
+    %ul.navbar-nav.ms-auto
+      - if user_signed_in?
+        %li.nav-item.d-flex.align-items-center
+          .me-3= link_to current_user.name, edit_user_registration_path, class: 'text-body fs-5 text-decoration-none'
+          = button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-danger border-white'
+      - else
+        %li.nav-item
+          = link_to 'ログイン', new_user_session_path, class: 'btn btn-primary'
