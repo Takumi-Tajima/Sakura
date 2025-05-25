@@ -4,7 +4,8 @@ gem 'rails'
 
 gem 'bootstrap'
 gem 'dartsass-rails'
-gem 'devise'
+# Rails8にdevise gemのtest_helpersが対応していないためmainブランチを指定
+gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'haml-rails'
 gem 'importmap-rails'
 gem 'propshaft'

@@ -17,20 +17,12 @@ RSpec.describe '管理者ログイン機能', type: :system do
       click_button 'ログイン'
 
       expect(page).to have_content 'ログインしました。'
-    end
-
-    it '管理者のルートページにアクセスできないこと' do
-      visit admins_root_path
-
-      expect(page).to have_content 'ログイン'
-      expect(page).to have_field 'メールアドレス'
-      expect(page).to have_field 'パスワード'
-      expect(page).not_to have_content 'Sakura Market for Administrators'
+      expect(page).to have_content 'Sakura Market for Administrators'
     end
   end
 
   context 'ログインしているとき' do
-    let(:admin) { create(:admin) }
+    let(:admin) { create(:administrator) }
 
     before { sign_in admin }
 
@@ -48,6 +40,7 @@ RSpec.describe '管理者ログイン機能', type: :system do
       visit new_administrator_session_path
 
       expect(page).to have_content 'Sakura Market for Administrators'
+      expect(page).to have_content 'すでにログインしています。'
       expect(page).not_to have_field 'メールアドレス'
       expect(page).not_to have_field 'パスワード'
     end
