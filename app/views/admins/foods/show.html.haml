@@ -1,0 +1,40 @@
+= link_to '戻る', admins_foods_path
+
+.container.py-4
+  .card.shadow-sm
+    .card-header.bg-success.text-white
+      %h1.fs-3.m-0= @food.name
+
+    .card-body
+      .row.mb-4
+        .col-8
+          %h2.fs-5 商品説明
+          .card-text.p-3
+            = @food.description.presence || '商品説明はありません'
+
+        .col-md-4
+          .card.mb-3
+            .card-header.bg-light 価格
+            .card-body
+              .card-text.fs-4
+                %span.fw-bold= number_to_currency(@food.price)
+
+          .card
+            .card-header.bg-light 公開ステータス
+            .card-body
+              - if @food.is_published
+                %span.badge.bg-success.p-2 公開中
+              - else
+                %span.badge.bg-secondary.p-2 非公開
+
+      .row
+        .col-12
+          %small.text-muted
+            作成日: #{l(@food.created_at)}
+            %br
+            更新日: #{l(@food.updated_at)}
+
+    .card-footer.d-flex.justify-content-between
+      = link_to '編集', edit_admins_food_path(@food), class: 'btn btn-primary'
+      = button_to '削除', admins_food_path(@food), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に削除しますか？' }
+
