@@ -1,0 +1,61 @@
+name: Rspec
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      RAILS_ENV: test
+      TZ: Asia/Tokyo
+      LANG: ja_JP.UTF-8
+      RUBYOPT: -W:deprecated
+      DATABASE_URL: sqlite3://storage/test.sqlite3?encoding=utf8&pool=5&timeout=5000
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config google-chrome-stable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: yarn
+          node-version-file: package.json
+
+      - name: Set up database
+        run: |
+          bundle exec rake db:create
+          bundle exec rake db:schema:load          
+
+      - name: Set Locale
+        run: |
+          sudo locale-gen ja_JP.UTF-8
+          sudo update-locale LANG=ja_JP.UTF-8
+
+      - name: Assets precompile
+        run: |
+          bundle exec rails assets:precompile
+
+      - name: Run RSpec
+        env:
+          COVERAGE: true
+        run: |
+          bundle exec rspec -f j -o tmp/rspec_results.json -f p
