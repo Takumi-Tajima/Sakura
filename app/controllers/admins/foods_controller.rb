@@ -16,7 +16,7 @@ class Admins::FoodsController < Admins::ApplicationController
     @food = Food.new(food_params)
 
     if @food.save
-      redirect_to admins_food_path(@food), notice: '食品を作成しました。'
+      redirect_to admins_foods_path, notice: '食品を作成しました。'
     else
       render :new, status: :unprocessable_entity
     end

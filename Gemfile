@@ -28,6 +28,7 @@ gem 'thruster', require: false
 group :development, :test do
   gem 'brakeman', require: false
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'haml-lint'
   gem 'rspec-rails'
   gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'
