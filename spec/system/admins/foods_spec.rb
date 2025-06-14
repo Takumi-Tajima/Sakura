@@ -25,7 +25,6 @@ RSpec.describe '食材の機能', type: :system do
   end
 
   describe '新規登録' do
-
     it '新規登録できること' do
       visit new_admins_food_path
 
