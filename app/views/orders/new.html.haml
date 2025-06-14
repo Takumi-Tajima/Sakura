@@ -1,0 +1,95 @@
+- content_for :title, '注文確認'
+
+.container.py-4
+  .d-flex.align-items-center.mb-4
+    = link_to cart_path, class: 'btn btn-light me-3' do
+      %i.bi.bi-arrow-left
+    %h1.h2.mb-0
+      %i.bi.bi-clipboard-check.me-2
+      注文確認
+
+  = simple_form_for @order do |f|
+    .row
+      .col-lg-8
+        .card.mb-4
+          .card-header.bg-primary.text-white
+            %h5.mb-0 
+              %i.bi.bi-truck.me-2
+              送付先情報
+          .card-body
+            = f.input :shipping_name, label: 'お名前', placeholder: '山田 太郎'
+            = f.input :shipping_address, label: '住所', as: :text, input_html: { rows: 3 }, 
+              placeholder: '〒000-0000 東京都...'
+            = f.input :phone_number, label: '電話番号', placeholder: '090-0000-0000'
+
+        .card.mb-4
+          .card-header.bg-info.text-white
+            %h5.mb-0
+              %i.bi.bi-calendar3.me-2
+              配送情報
+          .card-body
+            .alert.alert-info
+              %i.bi.bi-info-circle.me-2
+              MVPでは配送日時が固定されています
+            .row
+              .col-md-6
+                %label.form-label 配送日
+                %input.form-control{type: 'text', value: l(5.days.from_now.to_date, format: :long), readonly: true}
+              .col-md-6
+                %label.form-label 配送時間
+                %input.form-control{type: 'text', value: '14:00〜16:00', readonly: true}
+
+        .card
+          .card-header.bg-success.text-white
+            %h5.mb-0
+              %i.bi.bi-cart3.me-2
+              注文商品
+          .card-body
+            - @cart.cart_items.each do |cart_item|
+              .d-flex.align-items-center.border-bottom.py-3
+                - if cart_item.product.image.attached?
+                  = image_tag cart_item.product.image, 
+                    class: 'me-3 rounded', style: 'width: 60px; height: 60px; object-fit: cover;'
+                - else
+                  .bg-light.me-3.rounded.d-flex.align-items-center.justify-content-center{style: 'width: 60px; height: 60px;'}
+                    %i.bi.bi-image.text-muted
+                .flex-grow-1
+                  %h6.mb-1= cart_item.product.name
+                  %small.text-muted= number_to_currency(cart_item.product.price, unit: '¥', delimiter: ',')
+                %div.text-end
+                  %div 数量: #{cart_item.quantity}
+                  %strong= number_to_currency(cart_item.subtotal, unit: '¥', delimiter: ',')
+
+      .col-lg-4
+        .card.sticky-top{style: 'top: 20px;'}
+          .card-header.bg-warning.text-dark
+            %h5.mb-0
+              %i.bi.bi-receipt.me-2
+              お支払い金額
+          .card-body
+            %table.table.table-borderless.mb-3
+              %tbody
+                %tr
+                  %td 商品小計
+                  %td.text-end= number_to_currency(@cart.total_amount, unit: '¥', delimiter: ',')
+                %tr
+                  %td 送料（#{@cart.shipping_boxes_needed}箱）
+                  %td.text-end= number_to_currency(@cart.shipping_cost, unit: '¥', delimiter: ',')
+                %tr
+                  %td 代引き手数料
+                  %td.text-end= number_to_currency(@cart.cod_fee, unit: '¥', delimiter: ',')
+                %tr.border-top.border-2
+                  %td
+                    %strong 税込合計
+                  %td.text-end
+                    %strong.h4.text-primary
+                      = number_to_currency(@cart.total_with_tax, unit: '¥', delimiter: ',')
+
+            .d-grid.mb-3
+              = f.button :submit, class: 'btn btn-success btn-lg py-3' do
+                %i.bi.bi-check-circle.me-2
+                注文を確定する
+
+            .alert.alert-warning.small
+              %i.bi.bi-exclamation-triangle.me-2
+              代引き決済での注文となります。注文確定後のキャンセルはお受けできません。

@@ -1,0 +1,62 @@
+- content_for :title, '商品管理'
+
+.container.py-4
+  .d-flex.justify-content-between.align-items-center.mb-4
+    %h1.h2
+      %i.bi.bi-box-seam.me-2.text-primary
+      商品管理
+    = link_to new_admins_product_path, class: 'btn btn-primary btn-lg' do
+      %i.bi.bi-plus-circle.me-2
+      新規商品登録
+
+.card.border-primary
+  .card-header.bg-primary.text-white
+    %h5.mb-0
+      %i.bi.bi-list.me-2
+      商品一覧
+  .card-body
+    %table.table.table-hover.table-striped
+      %thead.table-dark
+        %tr
+          %th 表示順
+          %th 商品名
+          %th 価格
+          %th ステータス
+          %th 画像
+          %th 作成日
+          %th 操作
+      %tbody
+        - @products.each do |product|
+          %tr
+            %td= product.display_order
+            %td= link_to product.name, admins_product_path(product), class: 'text-decoration-none'
+            %td= number_to_currency(product.price, unit: '¥', delimiter: ',')
+            %td
+              - if product.display_hidden?
+                %span.badge.bg-secondary 非表示
+              - else
+                %span.badge.bg-success 表示中
+            %td
+              - if product.image.attached?
+                %i.bi.bi-image-fill.text-success
+              - else
+                %i.bi.bi-image.text-muted
+            %td= l(product.created_at, format: :short)
+            %td
+              .btn-group{role: 'group'}
+                = link_to edit_admins_product_path(product), class: 'btn btn-sm btn-outline-primary' do
+                  %i.bi.bi-pencil
+                  編集
+                = link_to admins_product_path(product), method: :delete, 
+                  confirm: '本当に削除しますか？', class: 'btn btn-sm btn-outline-danger' do
+                  %i.bi.bi-trash
+                  削除
+
+- if @products.empty?
+  .alert.alert-info.text-center.py-5
+    %i.bi.bi-info-circle.me-2
+    %strong 商品がまだ登録されていません。
+    %br.my-3
+    = link_to new_admins_product_path, class: 'btn btn-primary btn-lg' do
+      %i.bi.bi-plus-circle.me-2
+      新規商品登録

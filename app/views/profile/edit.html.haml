@@ -1,0 +1,47 @@
+- content_for :title, 'プロフィール編集'
+
+.container.py-4
+  .d-flex.align-items-center.mb-4
+    = link_to profile_path, class: 'btn btn-light me-3' do
+      %i.bi.bi-arrow-left
+    %h1.h2.mb-0
+      %i.bi.bi-person-gear.me-2
+      プロフィール編集
+
+  = simple_form_for @user, url: profile_path, method: :patch do |f|
+    .row
+      .col-md-6
+        .card.mb-4
+          .card-header.bg-primary.text-white
+            %h5.mb-0
+              %i.bi.bi-person.me-2
+              基本情報
+          .card-body
+            = f.input :name, label: '氏名', placeholder: '山田 太郎'
+            .form-group
+              %label.form-label メールアドレス
+              %input.form-control{type: 'email', value: @user.email, readonly: true}
+              %small.text-muted メールアドレスの変更はサポートまでお問い合わせください
+
+      .col-md-6
+        .card.mb-4
+          .card-header.bg-info.text-white
+            %h5.mb-0
+              %i.bi.bi-truck.me-2
+              送付先情報
+          .card-body
+            = f.input :shipping_name, label: '送付先名', placeholder: '山田 太郎',
+              hint: '注文時のデフォルト送付先名として使用されます'
+            = f.input :shipping_address, label: '住所', as: :text, input_html: { rows: 4 },
+              placeholder: '〒000-0000 東京都渋谷区...',
+              hint: '郵便番号から建物名・部屋番号まで詳しくご入力ください'
+            = f.input :phone_number, label: '電話番号', placeholder: '090-0000-0000',
+              hint: '配送時の連絡先として使用されます'
+
+    .d-flex.justify-content-between.mt-4
+      = link_to profile_path, class: 'btn btn-secondary' do
+        %i.bi.bi-x-circle.me-2
+        キャンセル
+      = f.button :submit, class: 'btn btn-primary btn-lg' do
+        %i.bi.bi-check-circle.me-2
+        更新する

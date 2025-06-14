@@ -1,0 +1,9 @@
+- content_for :title, "#{@product.name} - 商品編集"
+
+.d-flex.align-items-center.mb-4
+  = link_to admins_product_path(@product), class: 'btn btn-light me-3' do
+    %i.bi.bi-arrow-left
+  %h1.h2.mb-0 商品編集
+  %span.ms-3.text-muted= @product.name
+
+= render 'form'

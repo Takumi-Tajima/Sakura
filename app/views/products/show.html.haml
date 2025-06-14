@@ -1,0 +1,61 @@
+- content_for :title, @product.name
+
+.container.py-4
+  .d-flex.align-items-center.mb-4
+    = link_to products_path, class: 'btn btn-light me-3' do
+      %i.bi.bi-arrow-left
+    %h1.h2.mb-0= @product.name
+
+  .row
+    .col-md-6
+      .card
+        - if @product.image.attached?
+          = image_tag @product.image, class: 'card-img-top', 
+            style: 'height: 400px; object-fit: cover;'
+        - else
+          .card-img-top.bg-light.d-flex.align-items-center.justify-content-center{style: 'height: 400px;'}
+            %i.bi.bi-image.text-muted{style: 'font-size: 4rem;'}
+
+    .col-md-6
+      .card
+        .card-body
+          %h3.card-title= @product.name
+          %h4.text-primary.mb-4
+            = number_to_currency(@product.price, unit: '¥', delimiter: ',')
+
+          - if @product.description.present?
+            .mb-4
+              %h6 商品説明
+              = simple_format(@product.description)
+
+          - if user_signed_in?
+            = simple_form_for :cart_item, url: cart_items_path, html: { class: 'd-flex align-items-center' } do |f|
+              = hidden_field_tag :product_id, @product.id
+              = f.input :quantity, label: false, input_html: { 
+                value: 1, min: 1, max: 99, class: 'form-control me-3', style: 'width: 80px;' 
+              }
+              = f.button :submit, 'カートに追加', class: 'btn btn-primary btn-lg'
+          - else
+            .alert.alert-info
+              = link_to 'ログイン', new_user_session_path
+              してからカートに商品を追加できます。
+
+  .mt-5
+    %h4 配送について
+    .row
+      .col-md-6
+        .card.h-100
+          .card-body
+            %h6.card-title 配送料金
+            %p.card-text
+              1箱（商品5個まで）あたり
+              %strong ¥600
+            %small.text-muted 代引き手数料が別途かかります
+
+      .col-md-6
+        .card.h-100
+          .card-body
+            %h6.card-title 配送日時
+            %p.card-text
+              3営業日〜14営業日の間で指定可能
+            %small.text-muted 時間帯：8-12、12-14、14-16、16-18、18-20、20-21

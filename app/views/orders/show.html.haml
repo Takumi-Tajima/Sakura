@@ -1,0 +1,84 @@
+- content_for :title, "注文完了 - #{@order.id}"
+
+.container.py-4
+  .text-center.mb-5
+    .bg-success.text-white.rounded-circle.mx-auto.mb-4.d-flex.align-items-center.justify-content-center{style: 'width: 100px; height: 100px;'}
+      %i.bi.bi-check-lg{style: 'font-size: 3rem;'}
+    %h1.h2.text-success 注文が完了しました！
+    %p.lead.text-muted ご注文ありがとうございます
+    .badge.bg-light.text-dark.px-3.py-2
+      注文番号: ##{@order.id}
+
+  .row.justify-content-center
+    .col-lg-10
+      .card.mb-4.border-success
+        .card-header.bg-success.text-white
+          %h5.mb-0
+            %i.bi.bi-info-circle.me-2
+            注文内容
+        .card-body
+          .row.g-4
+            .col-md-6
+              %h6.text-primary
+                %i.bi.bi-calendar-check.me-2
+                お届け予定
+              %p.mb-2
+                %strong= l(@order.delivery_date, format: :long)
+              %span.badge.bg-info= @order.delivery_time_slot
+
+            .col-md-6
+              %h6.text-primary
+                %i.bi.bi-truck.me-2
+                お届け先
+              %p.mb-1
+                %strong= @order.shipping_name
+              %p.mb-0= simple_format(@order.shipping_address)
+
+      .card.mb-4
+        .card-header
+          %h5.mb-0
+            %i.bi.bi-basket.me-2
+            ご注文商品
+        .card-body
+          - @order.order_items.each do |order_item|
+            .d-flex.align-items-center.border-bottom.py-3
+              .flex-grow-1
+                %h6.mb-1= order_item.product_name
+                %small.text-muted #{number_to_currency(order_item.product_price, unit: '¥', delimiter: ',')} × #{order_item.quantity}
+              %strong= number_to_currency(order_item.subtotal, unit: '¥', delimiter: ',')
+
+      .card.mb-4
+        .card-header.bg-warning.text-dark
+          %h5.mb-0
+            %i.bi.bi-calculator.me-2
+            お支払い金額
+        .card-body
+          %table.table.table-borderless
+            %tbody
+              %tr
+                %td 商品小計
+                %td.text-end= number_to_currency(@order.subtotal, unit: '¥', delimiter: ',')
+              %tr
+                %td 送料
+                %td.text-end= number_to_currency(@order.shipping_cost, unit: '¥', delimiter: ',')
+              %tr
+                %td 代引き手数料
+                %td.text-end= number_to_currency(@order.cod_fee, unit: '¥', delimiter: ',')
+              %tr.border-top.border-2
+                %td
+                  %strong 合計金額（税込）
+                %td.text-end
+                  %strong.h4.text-primary
+                    = number_to_currency(@order.total, unit: '¥', delimiter: ',')
+
+      .alert.alert-info.text-center
+        %i.bi.bi-cash-coin.me-2
+        商品お受け取り時に、配達員に上記金額をお支払いください
+
+  .text-center.mt-5
+    = link_to orders_path, class: 'btn btn-outline-primary btn-lg me-3' do
+      %i.bi.bi-list.me-2
+      注文履歴を見る
+    = link_to root_path, class: 'btn btn-primary btn-lg' do
+      %i.bi.bi-house.me-2
+      トップページ

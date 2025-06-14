@@ -1,0 +1,66 @@
+- content_for :title, @product.name
+
+.d-flex.justify-content-between.align-items-center.mb-4
+  .d-flex.align-items-center
+    = link_to admins_products_path, class: 'btn btn-light me-3' do
+      %i.bi.bi-arrow-left
+    %h1.h2.mb-0= @product.name
+    - if @product.display_hidden?
+      %span.badge.bg-secondary.ms-3 非表示
+    - else
+      %span.badge.bg-success.ms-3 表示中
+
+  .btn-group
+    = link_to '編集', edit_admins_product_path(@product), class: 'btn btn-primary'
+    = link_to '削除', admins_product_path(@product), method: :delete, 
+      confirm: '本当に削除しますか？', class: 'btn btn-outline-danger'
+
+.row
+  .col-md-6
+    .card
+      - if @product.image.attached?
+        = image_tag @product.image, class: 'card-img-top', style: 'height: 300px; object-fit: cover;'
+      - else
+        .card-img-top.bg-light.d-flex.align-items-center.justify-content-center{style: 'height: 300px;'}
+          %i.bi.bi-image.text-muted{style: 'font-size: 3rem;'}
+      .card-body
+        %h5.card-title 商品画像
+        - if @product.image.attached?
+          %p.text-muted 画像が設定されています
+        - else
+          %p.text-muted 画像が設定されていません
+
+  .col-md-6
+    .card
+      .card-body
+        %h5.card-title 商品情報
+        %table.table.table-borderless
+          %tbody
+            %tr
+              %th{style: 'width: 120px;'} 商品名
+              %td= @product.name
+            %tr
+              %th 価格
+              %td= number_to_currency(@product.price, unit: '¥', delimiter: ',')
+            %tr
+              %th 表示順
+              %td= @product.display_order
+            %tr
+              %th ステータス
+              %td
+                - if @product.display_hidden?
+                  %span.badge.bg-secondary 非表示
+                - else
+                  %span.badge.bg-success 表示中
+            %tr
+              %th 作成日
+              %td= l(@product.created_at, format: :long)
+            %tr
+              %th 更新日
+              %td= l(@product.updated_at, format: :long)
+
+- if @product.description.present?
+  .card.mt-4
+    .card-body
+      %h5.card-title 商品説明
+      = simple_format(@product.description)

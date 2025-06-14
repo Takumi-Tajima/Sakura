@@ -13,11 +13,22 @@
     %link{ href: '/icon.svg', rel: 'icon', type: 'image/svg+xml' }
     %link{ href: '/icon.png', rel: 'apple-touch-icon' }
     = stylesheet_link_tag :app, 'data-turbo-track': 'reload'
+    %link{href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css", rel: "stylesheet"}
     = javascript_importmap_tags
   %body
     %header.mb-2
       = render 'layouts/headers/user_header'
     .container
       = render 'layouts/flash'
-      .mt-5
+      .mt-3
         = yield
+    
+    %footer.bg-light.mt-5.py-4
+      .container
+        .row
+          .col-md-6
+            %h6 さくらマーケット
+            %p.text-muted.small 新鮮な生鮮食品をお届けするECサイトです。
+          .col-md-6.text-md-end
+            %small.text-muted
+              © 2025 Sakura Market. All rights reserved.

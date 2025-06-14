@@ -1,2 +1,40 @@
-%h1 Admins::Home#index
-%p Find me in app/views/admins/home/index.html.haml
+- content_for :title, '管理者ダッシュボード'
+
+.container.py-4
+  %h1.h2.mb-4
+    %i.bi.bi-speedometer2.me-2.text-primary
+    管理者ダッシュボード
+
+.row
+  .col-md-6.col-lg-4.mb-4
+    .card.h-100.border-primary
+      .card-header.bg-primary.text-white.text-center
+        %i.bi.bi-box-seam{style: 'font-size: 2.5rem;'}
+      .card-body.text-center
+        %h5.card-title.text-primary 商品管理
+        %p.card-text.text-muted 商品の登録・編集・削除を行います
+        = link_to admins_products_path, class: 'btn btn-primary btn-lg' do
+          %i.bi.bi-arrow-right.me-2
+          商品管理
+
+  .col-md-6.col-lg-4.mb-4
+    .card.h-100.border-info
+      .card-header.bg-info.text-white.text-center
+        %i.bi.bi-people{style: 'font-size: 2.5rem;'}
+      .card-body.text-center
+        %h5.card-title.text-info ユーザー管理
+        %p.card-text.text-muted ユーザー情報の参照・更新・削除を行います
+        %button.btn.btn-outline-info.btn-lg{disabled: true}
+          %i.bi.bi-clock.me-2
+          準備中
+
+  .col-md-6.col-lg-4.mb-4
+    .card.h-100.border-success
+      .card-header.bg-success.text-white.text-center
+        %i.bi.bi-cart-check{style: 'font-size: 2.5rem;'}
+      .card-body.text-center
+        %h5.card-title.text-success 注文管理
+        %p.card-text.text-muted 注文状況の確認・更新を行います
+        %button.btn.btn-outline-success.btn-lg{disabled: true}
+          %i.bi.bi-clock.me-2
+          準備中

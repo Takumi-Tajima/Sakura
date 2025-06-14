@@ -1,0 +1,33 @@
+= simple_form_for [:admins, @product], html: { multipart: true } do |f|
+  = f.error_notification
+
+  .card
+    .card-body
+      .row
+        .col-md-8
+          = f.input :name, label: '商品名', placeholder: '商品名を入力してください'
+          = f.input :description, label: '商品説明', as: :text, input_html: { rows: 4 }, 
+            placeholder: '商品の詳細な説明を入力してください'
+          = f.input :price, label: '価格（円）', placeholder: '0'
+          = f.input :display_order, label: '表示順', placeholder: '0', 
+            hint: '数値が小さいほど上位に表示されます'
+          
+          .form-check.mb-3
+            = f.input :display_hidden, as: :boolean, label: '非表示にする', 
+              wrapper: :horizontal_boolean
+
+        .col-md-4
+          = f.input :image, label: '商品画像', as: :file, 
+            input_html: { accept: 'image/*' }
+          
+          - if @product.persisted? && @product.image.attached?
+            .mt-3
+              .card
+                = image_tag @product.image, class: 'card-img-top', style: 'height: 200px; object-fit: cover;'
+                .card-body.p-2
+                  %small.text-muted 現在の画像
+
+  .d-flex.justify-content-between.mt-4
+    = link_to 'キャンセル', @product.persisted? ? admins_product_path(@product) : admins_products_path, 
+      class: 'btn btn-secondary'
+    = f.button :submit, @product.persisted? ? '更新' : '作成', class: 'btn btn-primary'

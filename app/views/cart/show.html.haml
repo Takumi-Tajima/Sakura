@@ -1,0 +1,91 @@
+- content_for :title, 'ショッピングカート'
+
+.container.py-4
+  .d-flex.align-items-center.mb-4
+    = link_to products_path, class: 'btn btn-light me-3' do
+      %i.bi.bi-arrow-left
+    %h1.h2.mb-0
+      %i.bi.bi-cart3.me-2
+      ショッピングカート
+
+  - if @cart_items.any?
+    .row
+      .col-lg-8
+        - @cart_items.each do |cart_item|
+          .card.mb-3
+            .card-body
+              .row.align-items-center
+                .col-md-2
+                  - if cart_item.product.image.attached?
+                    = image_tag cart_item.product.image, 
+                      class: 'img-fluid rounded', style: 'height: 80px; width: 80px; object-fit: cover;'
+                  - else
+                    .bg-light.rounded.d-flex.align-items-center.justify-content-center{style: 'height: 80px; width: 80px;'}
+                      %i.bi.bi-image.text-muted
+                
+                .col-md-4
+                  %h6.mb-1= cart_item.product.name
+                  %small.text-muted= truncate(cart_item.product.description, length: 60)
+                  %div.mt-2
+                    %strong.text-primary= number_to_currency(cart_item.product.price, unit: '¥', delimiter: ',')
+                
+                .col-md-3.text-center
+                  = simple_form_for cart_item, html: { class: 'd-inline-block' } do |f|
+                    = f.input :quantity, label: '数量', 
+                      input_html: { 
+                        value: cart_item.quantity, 
+                        min: 1, max: 99, 
+                        class: 'form-control text-center',
+                        style: 'width: 80px;',
+                        onchange: 'this.form.submit();'
+                      }
+                
+                .col-md-2.text-center
+                  %strong= number_to_currency(cart_item.subtotal, unit: '¥', delimiter: ',')
+                
+                .col-md-1.text-end
+                  = link_to cart_item_path(cart_item), method: :delete, 
+                    confirm: '本当に削除しますか？', 
+                    class: 'btn btn-sm btn-outline-danger' do
+                    %i.bi.bi-trash
+
+      .col-lg-4
+        .card.sticky-top{style: 'top: 20px;'}
+          .card-header
+            %h5.mb-0
+              %i.bi.bi-receipt.me-2
+              注文内容
+          .card-body
+            %table.table.table-borderless.mb-3
+              %tbody
+                %tr
+                  %td 商品小計
+                  %td.text-end= number_to_currency(@cart.total_amount, unit: '¥', delimiter: ',')
+                %tr
+                  %td 送料（#{@cart.shipping_boxes_needed}箱）
+                  %td.text-end= number_to_currency(@cart.shipping_cost, unit: '¥', delimiter: ',')
+                %tr
+                  %td 代引き手数料
+                  %td.text-end= number_to_currency(@cart.cod_fee, unit: '¥', delimiter: ',')
+                %tr.border-top
+                  %td
+                    %strong 税込合計
+                  %td.text-end
+                    %strong.h5.text-primary
+                      = number_to_currency(@cart.total_with_tax, unit: '¥', delimiter: ',')
+
+            .d-grid.mb-3
+              = link_to new_order_path, class: 'btn btn-primary btn-lg' do
+                %i.bi.bi-credit-card.me-2
+                レジに進む
+
+            .alert.alert-info.small.mb-0
+              %i.bi.bi-info-circle.me-2
+              代引き決済のみ対応しています
+
+  - else
+    .text-center.py-5
+      %i.bi.bi-cart.text-muted{style: 'font-size: 4rem;'}
+      %h3.mt-3 カートは空です
+      %p.text-muted カートに商品が入っていません。
+      = link_to '商品を見る', products_path, class: 'btn btn-primary'

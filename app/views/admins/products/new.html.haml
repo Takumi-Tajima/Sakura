@@ -1,0 +1,8 @@
+- content_for :title, '新規商品登録'
+
+.d-flex.align-items-center.mb-4
+  = link_to admins_products_path, class: 'btn btn-light me-3' do
+    %i.bi.bi-arrow-left
+  %h1.h2.mb-0 新規商品登録
+
+= render 'form'

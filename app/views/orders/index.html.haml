@@ -1,0 +1,81 @@
+- content_for :title, '注文履歴'
+
+.container.py-4
+  .d-flex.align-items-center.mb-4
+    = link_to root_path, class: 'btn btn-light me-3' do
+      %i.bi.bi-arrow-left
+    %h1.h2.mb-0
+      %i.bi.bi-clock-history.me-2
+      注文履歴
+
+  - if @orders.any?
+    - @orders.each do |order|
+      .card.mb-4.border-start.border-primary.border-3
+        .card-header.bg-light.d-flex.justify-content-between.align-items-center
+          %div
+            %strong.text-primary 注文番号: ##{order.id}
+            %span.ms-3.text-muted
+              %i.bi.bi-calendar.me-1
+              = l(order.created_at, format: :short)
+          %div
+            - case order.status
+            - when 'pending'
+              %span.badge.bg-warning 注文受付中
+            - when 'confirmed'
+              %span.badge.bg-info 確認済み
+            - when 'shipped'
+              %span.badge.bg-primary 発送済み
+            - when 'delivered'
+              %span.badge.bg-success 配送完了
+            - when 'cancelled'
+              %span.badge.bg-danger キャンセル
+            - else
+              %span.badge.bg-secondary= order.status
+
+        .card-body
+          .row
+            .col-md-8
+              %h6.text-success
+                %i.bi.bi-bag-check.me-2
+                注文商品
+              - order.order_items.each do |order_item|
+                .d-flex.align-items-center.mb-2.p-2.bg-light.rounded
+                  %div
+                    %strong= order_item.product_name
+                    %small.text-muted.ms-2 × #{order_item.quantity}
+                  .ms-auto
+                    %strong.text-primary= number_to_currency(order_item.subtotal, unit: '¥', delimiter: ',')
+
+            .col-md-4
+              %h6.text-info
+                %i.bi.bi-truck.me-2
+                配送情報
+              .bg-light.p-3.rounded.mb-3
+                %p.mb-2
+                  %strong.text-primary 配送予定日:
+                  %br
+                  = l(order.delivery_date, format: :short)
+                %p.mb-2
+                  %strong.text-primary 時間帯:
+                  %br
+                  = order.delivery_time_slot
+                %p.mb-0
+                  %strong.text-primary 送付先:
+                  %br
+                  = order.shipping_name
+
+              %div.text-end
+                %strong.h5.text-success
+                  %i.bi.bi-currency-yen.me-1
+                  = number_to_currency(order.total, unit: '', delimiter: ',')
+                .mt-2
+                  = link_to order_path(order), class: 'btn btn-primary btn-sm' do
+                    %i.bi.bi-eye.me-2
+                    詳細を見る
+
+  - else
+    .text-center.py-5
+      %i.bi.bi-receipt.text-muted{style: 'font-size: 4rem;'}
+      %h3.mt-3 注文履歴がありません
+      %p.text-muted まだ注文をされていません。
+      = link_to '商品を見る', root_path, class: 'btn btn-primary'

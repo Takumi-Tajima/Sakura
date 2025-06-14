@@ -1,0 +1,83 @@
+- content_for :title, 'プロフィール'
+
+.container.py-4
+  .d-flex.justify-content-between.align-items-center.mb-4
+    %h1.h2 プロフィール
+    = link_to 'プロフィール編集', edit_profile_path, class: 'btn btn-primary'
+
+  .row
+    .col-md-6
+      .card
+        .card-header
+          %h5.mb-0
+            %i.bi.bi-person.me-2
+            基本情報
+        .card-body
+          %table.table.table-borderless
+            %tbody
+              %tr
+                %th{style: 'width: 120px;'} 氏名
+                %td= @user.name
+              %tr
+                %th メールアドレス
+                %td= @user.email
+
+    .col-md-6
+      .card
+        .card-header
+          %h5.mb-0
+            %i.bi.bi-truck.me-2
+            送付先情報
+        .card-body
+          - if @user.has_shipping_info?
+            %table.table.table-borderless
+              %tbody
+                %tr
+                  %th{style: 'width: 120px;'} 送付先名
+                  %td= @user.shipping_name
+                %tr
+                  %th 住所
+                  %td= simple_format(@user.shipping_address)
+                %tr
+                  %th 電話番号
+                  %td= @user.phone_number
+          - else
+            .text-center.py-4
+              %i.bi.bi-exclamation-circle.text-warning{style: 'font-size: 2rem;'}
+              %p.mt-3.mb-0 送付先情報が未設定です
+              %small.text-muted 注文には送付先情報が必要です
+
+  .mt-4
+    .card
+      .card-header
+        %h5.mb-0
+          %i.bi.bi-clock-history.me-2
+          最近の注文
+      .card-body
+        - recent_orders = @user.orders.recent.limit(3)
+        - if recent_orders.any?
+          - recent_orders.each do |order|
+            .d-flex.justify-content-between.align-items-center.border-bottom.py-2
+              %div
+                %strong 注文番号: #{order.id}
+                %br
+                %small.text-muted= l(order.created_at, format: :short)
+              %div.text-end
+                - case order.status
+                - when 'pending'
+                  %span.badge.bg-warning 注文受付中
+                - when 'confirmed'
+                  %span.badge.bg-info 確認済み
+                - when 'shipped'
+                  %span.badge.bg-primary 発送済み
+                - when 'delivered'
+                  %span.badge.bg-success 配送完了
+                - else
+                  %span.badge.bg-secondary= order.status
+                %br
+                %small= number_to_currency(order.total, unit: '¥', delimiter: ',')
+          .text-center.mt-3
+            = link_to '注文履歴をすべて見る', orders_path, class: 'btn btn-outline-primary'
+        - else
+          .text-center.py-3
+            %p.text-muted まだ注文がありません
