@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :administrators, controllers: { sessions: 'admins/sessions', passwords: 'admins/passwords' }
 
   namespace :admins do
-    root 'home#index'
+    root 'foods#index'
+    resources :foods, only: %i[index show new create edit update destroy]
   end
 
   root 'users/home#index'
