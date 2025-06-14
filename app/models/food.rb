@@ -3,6 +3,8 @@ class Food < ApplicationRecord
     attachable.variant :detail, resize_to_limit: [400, 400]
   end
 
+  acts_as_list
+
   validates :name, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1 }
   validates :is_published, inclusion: { in: [true, false] }
