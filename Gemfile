@@ -5,8 +5,10 @@ gem 'rails'
 gem 'bootstrap'
 gem 'dartsass-rails'
 # Rails8にdevise gemのtest_helpersが対応していないためmainブランチを指定
+gem 'active_storage_validations'
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'haml-rails'
+gem 'image_processing'
 gem 'importmap-rails'
 gem 'propshaft'
 gem 'puma'
@@ -14,10 +16,6 @@ gem 'simple_form'
 gem 'sqlite3'
 gem 'stimulus-rails'
 gem 'turbo-rails'
-
-gem 'solid_cable'
-gem 'solid_cache'
-gem 'solid_queue'
 
 gem 'bootsnap', require: false
 
