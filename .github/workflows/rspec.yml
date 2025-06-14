@@ -17,7 +17,7 @@ jobs:
       TZ: Asia/Tokyo
       LANG: ja_JP.UTF-8
       RUBYOPT: -W:deprecated
-      DATABASE_URL: sqlite3://storage/test.sqlite3?encoding=utf8&pool=5&timeout=5000
+      DATABASE_URL: sqlite3://${{ github.workspace }}/storage/test.sqlite3?encoding=utf8&pool=5&timeout=5000
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
     steps:
@@ -33,6 +33,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config google-chrome-stable
+
+      - name: Ensure storage directory exists
+        run: mkdir -p storage
 
       - name: Set up database
         run: |
