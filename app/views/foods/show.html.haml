@@ -19,4 +19,4 @@
             = @food.description.presence || '商品説明はありません'
 
         .d-flex.flex-row
-          .fs-4.fw-bold= number_to_currency(@food.price)
+          .fs-4.fw-bold #{number_to_currency(@food.price_with_tax)}(税込)

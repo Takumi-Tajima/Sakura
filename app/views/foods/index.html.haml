@@ -8,4 +8,4 @@
               = image_tag food.food_image.variant(:thumbnail)
           .card-body
             .fs-5.card-title.fw-bold= food.name
-            .fs-6.card-text #{number_to_currency(food.price)}(税込)
+            .fs-6.card-text #{number_to_currency(food.price_with_tax)}(税込)

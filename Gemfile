@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails'
 
 gem 'bootstrap'
+gem 'config'
 gem 'dartsass-rails'
 # Rails8にdevise gemのtest_helpersが対応していないためmainブランチを指定
 gem 'active_storage_validations'

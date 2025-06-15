@@ -14,4 +14,8 @@ class Food < ApplicationRecord
   scope :default_order, -> { order(id: :desc) }
   scope :ordered_positions, -> { order(:position) }
   scope :published, -> { where(is_published: true) }
+
+  def price_with_tax
+    BigDecimal(price) * BigDecimal(Settings.tax_rate.to_s)
+  end
 end

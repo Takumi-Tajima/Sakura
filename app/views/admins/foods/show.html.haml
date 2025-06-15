@@ -24,7 +24,7 @@
                 .card-header.bg-light 価格
                 .card-body
                   .card-text.fs-4
-                    %span.fw-bold= number_to_currency(@food.price)
+                    %span.fw-bold #{number_to_currency(@food.price_with_tax)}(税込)
 
             .col-md-6
               .card

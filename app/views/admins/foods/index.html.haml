@@ -16,7 +16,7 @@
           %i.bi.bi-grip-vertical
         %td=food.position
         %td= link_to food.name, admins_food_path(food)
-        %td= number_to_currency(food.price)
+        %td #{number_to_currency(food.price_with_tax)}(税込)
         %td= food.is_published? ? '公開中' : '非公開'
         %td
           = link_to '編集', edit_admins_food_path(food), class: 'me-2'
