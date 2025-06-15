@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   namespace :admins do
     root 'foods#index'
-    resources :foods, only: %i[index show new create edit update destroy]
+    resources :foods, only: %i[index show new create edit update destroy] do
+      resource 'position', only: %i[update], module: :foods
+    end
   end
 
   root 'users/home#index'

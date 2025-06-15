@@ -1,15 +1,20 @@
 = link_to '食材を登録する', new_admins_food_path, class: 'btn btn-primary'
 
-%table.table.mt-5{ data: { controller: "sortable", sortable_animation_value: 150 } }
+%table.table.mt-5
   %thead
     %tr
+      %th
+      %th 表示順
       %th 名前
       %th 値段
       %th 公開ステータス
       %th
-  %tbody
+  %tbody{ data: { controller: 'sortable' } }
     - @foods.each do |food|
-      %tr{ data: { sortable_update_url: food_position_path(food) } }
+      %tr
+        %td
+          %i.bi.bi-grip-vertical
+        %td=food.position
         %td= link_to food.name, admins_food_path(food)
         %td= number_to_currency(food.price)
         %td= food.is_published? ? '公開中' : '非公開'

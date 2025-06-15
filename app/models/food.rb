@@ -11,4 +11,5 @@ class Food < ApplicationRecord
   validates :food_image, content_type: %i[png jpg jpeg]
 
   scope :default_order, -> { order(id: :desc) }
+  scope :ordered_positions, -> { order(:position) }
 end
