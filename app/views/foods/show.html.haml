@@ -1,0 +1,22 @@
+= link_to '戻る', foods_path
+
+.container.py-4
+  .card.shadow-sm
+    .card-header.bg-success.text-white
+      %h1.fs-3.m-0= @food.name
+
+    .card-body
+      .row.mb-4
+        .col-md-6.mb-3
+          - if @food.food_image.attached?
+            = image_tag @food.food_image.variant(:detail), class: 'img-fluid rounded'
+          - else
+            画像が登録されていません。
+
+        .col-md-6
+          %h2.fs-5 商品説明
+          .card-text.p-3
+            = @food.description.presence || '商品説明はありません'
+
+        .d-flex.flex-row
+          .fs-4.fw-bold= number_to_currency(@food.price)
