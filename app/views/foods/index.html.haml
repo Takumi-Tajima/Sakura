@@ -3,6 +3,9 @@
     .col.mb-4
       = link_to food_path(food), class: 'text-decoration-none' do
         .card
+          .card-header.p-0
+            - if food.food_image.attached?
+              = image_tag food.food_image.variant(:thumbnail)
           .card-body
             .fs-5.card-title.fw-bold= food.name
             .fs-6.card-text #{number_to_currency(food.price)}(税込)
