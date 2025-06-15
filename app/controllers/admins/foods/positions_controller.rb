@@ -1,4 +1,4 @@
-class Admins::Foods::PositionsController < Admins::ActionController::Base
+class Admins::Foods::PositionsController < Admins::ApplicationController
   before_action :set_food, only: %i[update]
 
   def update
