@@ -2,8 +2,8 @@
   - next unless msg.is_a?(String)
 
   .position-fixed.end-0.top-0
-    .toast.fade.show.mt-4.me-3{ class: "bg-#{name.to_s == 'notice' ? 'success-subtle' : 'danger-subtle'}",
-                                role: 'alert', 'aria-live': 'assertive', 'aria-atomic': 'true' }
+    .toast.fade.show.mt-4.me-3{class: "bg-#{name.to_s == 'notice' ? 'success-subtle' : 'danger-subtle'}",
+                               role: 'alert', 'aria-live': 'assertive', 'aria-atomic': 'true'}
       .toast-body.d-flex.justify-content-between
         = msg
         %button.btn-close{ type: :button, 'data-bs-dismiss': 'toast', 'aria-label': 'Close' }
