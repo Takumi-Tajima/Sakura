@@ -35,6 +35,3 @@
 
 # Ignore database.yml
 /config/database.yml
-
-# Ignore IDE files
-.idea
