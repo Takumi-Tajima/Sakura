@@ -1,0 +1,5 @@
+%p ようこそ #{@resource.name} 様
+
+%p 下記のURLをクリックして、アカウントを有効化してください
+
+%p= link_to nil, confirmation_url(@resource, confirmation_token: @token)

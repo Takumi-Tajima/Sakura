@@ -1,6 +1,15 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.alert         = true
+    Bullet.bullet_logger = true
+    Bullet.console       = true
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Make code changes take effect immediately without server restart.
@@ -39,6 +48,8 @@ Rails.application.configure do
 
   # Set localhost to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+
+  config.action_mailer.delivery_method = :letter_opener_web
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

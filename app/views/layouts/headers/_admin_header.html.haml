@@ -1,0 +1,11 @@
+.navbar.bg-light
+  .container-fluid
+    .d-flex.align-items-center
+      .navbar-brand.fs-2= link_to 'Sakura Market for Admin', admins_root_path, class: 'text-decoration-none text-dark'
+    %ul.navbar-nav.ms-auto
+      - if admin_signed_in?
+        %li.nav-item
+          = button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-outline-danger'
+      - else
+        %li.nav-item
+          = link_to 'ログイン', new_admin_session_path, class: 'btn btn-primary'

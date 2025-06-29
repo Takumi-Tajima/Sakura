@@ -1,0 +1,8 @@
+%h1.fs-2 ログイン
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.input :email, autofocus: true
+  = f.input :password
+  = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+  = f.button :submit, 'ログイン', class: 'btn btn-primary'
+
+= render 'users/shared/links'
