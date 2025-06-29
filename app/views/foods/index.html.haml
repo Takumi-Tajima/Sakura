@@ -1,9 +1,9 @@
-.row.row-cols-sm-1.row-cols-md-3.row-cols-lg-4.g-5
+.row.row-cols-sm-1.row-cols-md-3.g-5
   - @foods.each do |food|
     .col.mb-4
       = link_to food_path(food), class: 'text-decoration-none' do
         .card
-          .card-header.p-0
+          .card-header.p-0{ style: 'height: 200px; overflow: hidden;' }
             - if food.food_image.attached?
               = image_tag food.food_image.variant(:thumbnail)
           .card-body
