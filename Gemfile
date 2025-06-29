@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
+gem 'active_storage_validations'
+gem 'acts_as_list'
 gem 'bootsnap', require: false
-gem 'config'
 gem 'bootstrap'
+gem 'config'
 gem 'dartsass-rails'
 # Rails8にdevise gemのtest_helpersが対応していないためmainブランチを指定
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
@@ -22,6 +24,7 @@ gem 'turbo-rails'
 group :development, :test do
   gem 'brakeman', require: false
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'haml-lint'
   gem 'rspec-rails'
   gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'

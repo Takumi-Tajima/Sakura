@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe '食材の機能', type: :system do
-  let(:admin) { create(:administrator) }
+  let(:admin) { create(:admin) }
 
   before { sign_in admin }
 
@@ -14,7 +14,7 @@ RSpec.describe '食材の機能', type: :system do
       visit admins_foods_path
 
       expect(page).to have_content('いちご大福')
-      expect(page).to have_content('350円')
+      expect(page).to have_content('385円(税込)')
       expect(page).to have_content('公開中')
 
       click_on 'いちご大福'
@@ -31,7 +31,7 @@ RSpec.describe '食材の機能', type: :system do
       expect(page).to have_selector('h1', text: '食材新規登録')
 
       fill_in '名前', with: '抹茶ロールケーキ'
-      fill_in '価格', with: '480'
+      fill_in '価格', with: '400'
       check '公開する'
 
       expect do
@@ -40,7 +40,7 @@ RSpec.describe '食材の機能', type: :system do
       end.to change(Food, :count).by(1)
 
       expect(page).to have_content('抹茶ロールケーキ')
-      expect(page).to have_content('480')
+      expect(page).to have_content('440円(税込)')
       expect(page).to have_content('公開中')
     end
 
@@ -63,27 +63,27 @@ RSpec.describe '食材の機能', type: :system do
 
   describe '編集' do
     before do
-      create(:food, name: 'どら焼き', price: 280, is_published: false)
+      create(:food, name: 'どら焼き', price: 300, is_published: false)
     end
 
     it '編集できること' do
       visit admins_foods_path
 
       expect(page).to have_content('どら焼き')
-      expect(page).to have_content('280円')
+      expect(page).to have_content('330円(税込)')
       expect(page).to have_content('非公開')
 
       click_on '編集'
 
       fill_in '名前', with: '特製どら焼き'
-      fill_in '価格', with: '320'
+      fill_in '価格', with: '800'
       check '公開する'
 
       click_on '更新する'
 
       expect(page).to have_content('食品を更新しました。')
       expect(page).to have_content('特製どら焼き')
-      expect(page).to have_content('320円')
+      expect(page).to have_content('880円(税込)')
       expect(page).to have_content('公開中')
     end
   end

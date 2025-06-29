@@ -14,7 +14,7 @@ RSpec.describe 'ユーザー登録機能', type: :system do
 
       click_on '登録する'
 
-      expect(page).to have_content 'ログインもしくはアカウント登録してください。'
+      expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
 
       email = open_last_email
 
