@@ -1,0 +1,11 @@
+.row.row-cols-sm-1.row-cols-md-3.g-5
+  - @foods.each do |food|
+    .col.mb-4
+      = link_to food_path(food), class: 'text-decoration-none' do
+        .card
+          .card-header.p-0{ style: 'height: 200px; overflow: hidden;' }
+            - if food.food_image.attached?
+              = image_tag food.food_image.variant(:thumbnail)
+          .card-body
+            .fs-5.card-title.fw-bold= food.name
+            .fs-6.card-text #{number_to_currency(food.price_with_tax)}(税込)

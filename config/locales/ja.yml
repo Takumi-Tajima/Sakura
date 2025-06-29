@@ -1,6 +1,12 @@
 ja:
   activerecord:
     attributes:
+      food:
+        name: 名前
+        description: 食材の説明
+        price: 価格
+        is_published: 公開ステータス
+        food_image: 画像
       user:
         name: 名前
         email: メールアドレス
@@ -185,7 +191,7 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      default: "%Y年%m月%d日(%a) %H時%M分"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
