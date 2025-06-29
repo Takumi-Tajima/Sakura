@@ -5,7 +5,7 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
-      administrator:
+      admin:
         email: メールアドレス
         password: パスワード
     errors:
