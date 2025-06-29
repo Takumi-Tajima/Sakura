@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails'
 
 gem 'bootsnap', require: false
+gem 'config'
 gem 'bootstrap'
 gem 'dartsass-rails'
 # Rails8にdevise gemのtest_helpersが対応していないためmainブランチを指定
