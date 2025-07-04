@@ -14,7 +14,7 @@ RSpec.describe '管理者ログイン機能', type: :system do
       fill_in 'メールアドレス',	with: 'test@example.com'
       fill_in 'パスワード',	with: 'password'
 
-      click_on 'ログイン'
+      click_button 'ログイン'
 
       expect(page).to have_content 'ログインしました。'
       expect(page).to have_content 'Sakura Market for Admin'

@@ -13,7 +13,7 @@ RSpec.describe 'ユーザーのログイン機能', type: :system do
 
       fill_in 'メールアドレス', with: 'takumi@exmaple.com'
       fill_in 'パスワード', with: 'password123'
-      click_on 'ログイン'
+      click_button 'ログイン'
 
       expect(page).to have_content 'ログインしました。'
 

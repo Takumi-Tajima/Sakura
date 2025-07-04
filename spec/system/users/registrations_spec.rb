@@ -29,7 +29,7 @@ RSpec.describe 'ユーザー登録機能', type: :system do
 
       fill_in 'メールアドレス', with: 'tanaka@exmaple.com'
       fill_in 'パスワード', with: 'password'
-      click_on 'ログイン'
+      click_button 'ログイン'
 
       within '.navbar' do
         expect(page).to have_content '田中太郎'
