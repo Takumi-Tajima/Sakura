@@ -24,4 +24,4 @@ linters:
     enabled: true
     # kaminariが生成するviewはチェックしない
     exclude:
-      - app/views/kaminari/**/*
+      app/views/kaminari/**/*

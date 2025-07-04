@@ -29,7 +29,7 @@ RSpec.describe 'ユーザー登録機能', type: :system do
 
       fill_in 'メールアドレス', with: 'tanaka@exmaple.com'
       fill_in 'パスワード', with: 'password'
-      click_button 'ログイン'
+      click_on 'ログイン'
 
       within '.navbar' do
         expect(page).to have_content '田中太郎'
@@ -41,13 +41,15 @@ RSpec.describe 'ユーザー登録機能', type: :system do
   describe 'ユーザー情報編集画面へのリンクと、ユーザー情報の編集機能' do
     let(:user) { create(:user, name: '吉田健', email: 'yoshida@exmaple.com', password: 'password') }
 
-    before { sign_in user }
+    before do
+      sign_in user
+    end
 
     it 'ヘッダーにある名前のリンクを押すと、ユーザーの編集画面に遷移すること' do
       visit root_path
 
       within '.navbar' do
-        click_link '吉田健'
+        click_on '吉田健'
       end
 
       expect(page).to have_selector 'h1', text: 'ユーザー情報の編集'

@@ -104,7 +104,6 @@ GEM
     ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.20)
-    bcrypt_pbkdf (1.1.1)
     benchmark (0.4.1)
     bigdecimal (3.2.2)
     bindex (0.8.1)
@@ -137,9 +136,7 @@ GEM
       sass-embedded (~> 1.63)
     date (3.4.1)
     diff-lcs (1.6.2)
-    dotenv (3.1.8)
     drb (2.2.3)
-    ed25519 (1.4.0)
     email_spec (2.3.0)
       htmlentities (~> 4.3.3)
       launchy (>= 2.1, < 4.0)
@@ -189,17 +186,6 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.12.2)
-    kamal (2.7.0)
-      activesupport (>= 7.0)
-      base64 (~> 0.2)
-      bcrypt_pbkdf (~> 1.0)
-      concurrent-ruby (~> 1.2)
-      dotenv (~> 3.1)
-      ed25519 (~> 1.4)
-      net-ssh (~> 7.3)
-      sshkit (>= 1.23.0, < 2.0)
-      thor (~> 1.3)
-      zeitwerk (>= 2.6.18, < 3.0)
     language_server-protocol (3.17.0.5)
     launchy (3.1.1)
       addressable (~> 2.8)
@@ -234,20 +220,14 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-scp (4.1.0)
-      net-ssh (>= 2.6.5, < 8.0.0)
-    net-sftp (4.0.0)
-      net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.1)
       net-protocol
-    net-ssh (7.3.0)
     nio4r (2.7.4)
     nokogiri (1.18.8-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    ostruct (0.6.2)
     parallel (1.27.0)
     parser (3.3.8.0)
       ast (~> 2.4.1)
@@ -393,21 +373,12 @@ GEM
       activemodel (>= 5.2)
     sqlite3 (2.7.0-arm64-darwin)
     sqlite3 (2.7.0-x86_64-linux-gnu)
-    sshkit (1.24.0)
-      base64
-      logger
-      net-scp (>= 1.1.2)
-      net-sftp (>= 2.1.2)
-      net-ssh (>= 2.8.0)
-      ostruct
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.7)
     sysexits (1.2.0)
     temple (0.10.3)
     thor (1.3.2)
-    thruster (0.1.14-arm64-darwin)
-    thruster (0.1.14-x86_64-linux)
     tilt (2.6.0)
     timeout (0.4.3)
     turbo-rails (2.0.16)
@@ -454,7 +425,6 @@ DEPENDENCIES
   haml-lint
   haml-rails
   importmap-rails
-  kamal
   letter_opener_web
   propshaft
   puma
@@ -465,7 +435,6 @@ DEPENDENCIES
   simple_form
   sqlite3
   stimulus-rails
-  thruster
   turbo-rails
   web-console
 

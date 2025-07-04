@@ -14,7 +14,7 @@ RSpec.describe '管理者ログイン機能', type: :system do
       fill_in 'メールアドレス',	with: 'test@example.com'
       fill_in 'パスワード',	with: 'password'
 
-      click_button 'ログイン'
+      click_on 'ログイン'
 
       expect(page).to have_content 'ログインしました。'
       expect(page).to have_content 'Sakura Market for Admin'
@@ -24,14 +24,16 @@ RSpec.describe '管理者ログイン機能', type: :system do
   context 'ログインしているとき' do
     let(:admin) { create(:admin) }
 
-    before { sign_in admin }
+    before do
+      sign_in admin
+    end
 
     it 'ログアウトできること' do
       visit admins_root_path
 
       expect(page).to have_content 'Sakura Market for Admin'
 
-      click_button 'ログアウト'
+      click_on 'ログアウト'
 
       expect(page).to have_content 'ログアウトしました。'
     end
