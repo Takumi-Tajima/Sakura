@@ -27,7 +27,9 @@ RSpec.describe 'ユーザーのログイン機能', type: :system do
   context 'ログインしている時' do
     let(:user) { create(:user, name: '前田直輝') }
 
-    before { sign_in user }
+    before do
+      sign_in user
+    end
 
     it 'ログアウトできること' do
       visit root_path
@@ -40,7 +42,7 @@ RSpec.describe 'ユーザーのログイン機能', type: :system do
       end
 
       within '.navbar' do
-        click_button 'ログアウト'
+        click_on 'ログアウト'
       end
 
       within '.navbar' do

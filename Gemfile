@@ -12,13 +12,11 @@ gem 'dartsass-rails'
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'haml-rails'
 gem 'importmap-rails'
-gem 'kamal', require: false
 gem 'propshaft'
 gem 'puma'
 gem 'simple_form'
 gem 'sqlite3'
 gem 'stimulus-rails'
-gem 'thruster', require: false
 gem 'turbo-rails'
 
 group :development, :test do

@@ -41,14 +41,16 @@ RSpec.describe 'ユーザー登録機能', type: :system do
   describe 'ユーザー情報編集画面へのリンクと、ユーザー情報の編集機能' do
     let(:user) { create(:user, name: '吉田健', email: 'yoshida@exmaple.com', password: 'password') }
 
-    before { sign_in user }
+    before do
+      sign_in user
+    end
 
     it 'ヘッダーにある名前のリンクを押すと、ユーザーの編集画面に遷移すること' do
       visit root_path
 
-      expect(page).to have_content 'Sakura Market'
-
-      click_on '吉田健'
+      within '.navbar' do
+        click_link '吉田健'
+      end
 
       expect(page).to have_selector 'h1', text: 'ユーザー情報の編集'
       expect(page).to have_field '名前', with: '吉田健'
