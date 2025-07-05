@@ -1,0 +1,7 @@
+= simple_form_for [:admins, food] do |f|
+  = f.input :name
+  = f.input :description
+  = f.input :price
+  = f.input :is_published, label: '公開する'
+  = f.input :food_image
+  = f.button :submit, class: 'btn btn-primary'
