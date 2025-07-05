@@ -11,8 +11,7 @@ class Food < ApplicationRecord
   validates :is_published, inclusion: { in: [true, false] }
   validates :food_image, content_type: %i[png jpg jpeg]
 
-  scope :default_order, -> { order(id: :desc) }
-  scope :ordered_positions, -> { order(:position) }
+  scope :default_order, -> { order(:position) }
   scope :published, -> { where(is_published: true) }
 
   def price_with_tax

@@ -3,7 +3,7 @@
     .col.mb-4
       = link_to food_path(food), class: 'text-decoration-none' do
         .card
-          .card-header.p-0{ style: 'height: 200px; overflow: hidden;' }
+          .card-header.p-0.h-200px
             - if food.food_image.attached?
               = image_tag food.food_image.variant(:thumbnail)
           .card-body

@@ -2,7 +2,7 @@ class Admins::FoodsController < Admins::ApplicationController
   before_action :set_food, only: %i[show edit update destroy]
 
   def index
-    @foods = Food.ordered_positions
+    @foods = Food.default_order
   end
 
   def show
