@@ -4,7 +4,6 @@
   .card.shadow-sm
     .card-header.bg-secondary.text-white
       %h1.fs-3.m-0= @food.name
-
     .card-body
       .row.mb-4
         .col-md-4.mb-3
@@ -12,12 +11,10 @@
             = image_tag @food.food_image.variant(:detail), class: 'img-fluid rounded'
           - else
             画像が登録されていません。
-
         .col-md-8
           %h2.fs-5 商品説明
           .card-text.p-3
             = @food.description.presence || '商品説明はありません'
-
           .row.mt-3
             .col-md-6
               .card.mb-3
@@ -25,7 +22,6 @@
                 .card-body
                   .card-text.fs-4
                     %span.fw-bold #{number_to_currency(@food.price_with_tax)}(税込)
-
             .col-md-6
               .card
                 .card-header.bg-light 公開ステータス
@@ -34,7 +30,6 @@
                     %span.badge.bg-success.p-2 公開中
                   - else
                     %span.badge.bg-secondary.p-2 非公開
-
       .row
         .col-12
           %small.text-muted
@@ -44,4 +39,4 @@
 
     .card-footer.d-flex.justify-content-between
       = link_to '編集', edit_admins_food_path(@food), class: 'btn btn-primary'
-      = button_to '削除', admins_food_path(@food), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に削除しますか？' }
+      = button_to '削除', admins_food_path(@food), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger'

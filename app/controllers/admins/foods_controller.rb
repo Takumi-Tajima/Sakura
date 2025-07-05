@@ -18,7 +18,7 @@ class Admins::FoodsController < Admins::ApplicationController
     if @food.save
       redirect_to admins_foods_path, notice: '食品を作成しました。'
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -29,7 +29,7 @@ class Admins::FoodsController < Admins::ApplicationController
     if @food.update(food_params)
       redirect_to admins_food_path(@food), notice: '食品を更新しました。'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
