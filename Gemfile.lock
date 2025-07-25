@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/SonicGarden/sgcop.git
-  revision: dbb14de6eba829e8774b70b8b3e9db8eac43ebf2
+  revision: 16db3f9ddb86f7d594b37078474a55b3859dc7be
   branch: main
   specs:
-    sgcop (1.2.9)
-      rubocop (~> 1.76.0)
+    sgcop (1.4.1)
+      rubocop (~> 1.78.0)
       rubocop-capybara (~> 2.22.0)
       rubocop-factory_bot (~> 2.27.0)
       rubocop-performance (~> 1.25.0)
@@ -185,7 +185,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.12.2)
+    json (2.13.1)
     language_server-protocol (3.17.0.5)
     launchy (3.1.1)
       addressable (~> 2.8)
@@ -229,7 +229,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.27.0)
-    parser (3.3.8.0)
+    parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
     popper_js (2.11.8)
@@ -315,7 +315,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.4)
-    rubocop (1.76.2)
+    rubocop (1.78.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -326,7 +326,7 @@ GEM
       rubocop-ast (>= 1.45.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.45.1)
+    rubocop-ast (1.46.0)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
     rubocop-capybara (2.22.1)
